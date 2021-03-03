@@ -4,6 +4,7 @@ import Home from './components/layout/Home';
 import Create from './components/Blog/Create';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.css';
+import BlogDetails from './components/Blog/BlogDetails';
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
             </Route>
             <Route exact path="/create">
               <Create />
+            </Route>
+            <Route exact path="/blogs/:id">
+              <BlogDetails />
             </Route>
           </Switch>
         </div>

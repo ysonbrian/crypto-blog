@@ -6,6 +6,8 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // 유저가 home과 new blog를 반복시에 home에서 불러와야할 fetch 정보를 new blog 컴포넌트가 받는 경우
+    // AbortController를 사용하면 방지 가능
     const abortCont = new AbortController();
 
     setTimeout(() => {
@@ -22,6 +24,7 @@ const useFetch = (url) => {
           setError(null);
         })
         .catch((err) => {
+          // 중요
           if (err.name === 'AbortError') {
             console.log('fetch aborted');
           } else {
@@ -30,7 +33,7 @@ const useFetch = (url) => {
           }
         });
     }, 1000);
-
+    // 중요
     return () => abortCont.abort();
   }, [url]);
 
